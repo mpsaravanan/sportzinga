@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace App\Http\Controllers;
 use App\JsonResponse;
 use App\Models\User;
@@ -14,7 +14,7 @@ class UserController extends Controller {
 	{
 		$this->middleware('guest');
 		$this->jsonData = new JsonResponse();
-		$this->userDetails = new User();		
+		$this->userDetails = new User();
 	}
 
 	public function userDetails() {
@@ -23,12 +23,20 @@ class UserController extends Controller {
 		return 	$this->jsonData->sendJson($response);
 	}
 
-	public function login() {
-		$user = Request::all();
-var_dump($user);
+	public function login(Request $request) {
+
+		$response = $this->userDetails->login($request);
+		return $this->jsonData->sendJson($response);
 		//$response = $this->userDetails->getLogin();
 		//return 	$this->jsonData->sendJson($response);
 	}
-	
-	
+	public function auth(Request $request){
+		$response = $this->userDetails->verifyAuth($request);
+		return $this->jsonData->sendJson($response);
+	}
+	public function logout(){
+		$response = $this->userDetails->logout();
+		return $this->jsonData->sendJson($response);
+	}
+
 }
