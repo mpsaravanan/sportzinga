@@ -25,10 +25,10 @@ class User
 			$data = DB::table('sz_user')->where('user_id',$username)->get();
 			$auth = hash('ripemd160',$data[0]->id+$data[0]->user_id+$data[0]->dob);
 			$suc = DB::table('sz_user')->where('user_id',$username)->update(['auth_token'=>$auth]);
+			$data[0]->auth_token = $auth;
 			$response = array(
 				"status" => "200",
 				"data" => $data,
-				"auth_token" => $auth
 			);
 		}
 		else{
