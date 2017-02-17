@@ -23,9 +23,15 @@ class User
 		}
 		else if(strcmp($password,$ActualPass)==0){
 			$data = DB::table('sz_user')->where('user_id',$username)->get();
+			$email = DB::table('sz_user_emails_phones')->where('user_id',$username)->where('type',1)->value('value');
+			$phone = DB::table('sz_user_emails_phones')->where('user_id',$username)->where('type',0)->value('value');
 			$auth = hash('ripemd160',$data[0]->id+$data[0]->user_id+$data[0]->dob);
 			$suc = DB::table('sz_user')->where('user_id',$username)->update(['auth_token'=>$auth]);
+			$data[0]->phone = $phone;
+			$data[0]->email = $email;
 			$data[0]->auth_token = $auth;
+			unset($data[0]->password);
+			$data = (object)$data;
 			$response = array(
 				"status" => "200",
 				"data" => $data,
@@ -57,10 +63,9 @@ class User
 		}
 		return $response;
 	}
-	public function logout(){
-		$username = $_SESSION['username'];
+	public function logout($username){
 		session_unset();
-		$suc = DB::table(sz_user)->where('user_id',$username)->update(['auth_token'=>0]);
+		$suc = DB::table('sz_user')->where('user_id',$username)->update(['auth_token'=>0]);
 		if($suc){
 			$response = array(
 				"status" => "200",

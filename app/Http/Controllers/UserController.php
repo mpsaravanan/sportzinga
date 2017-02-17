@@ -35,8 +35,8 @@ class UserController extends Controller {
 		$response = $this->userDetails->verifyAuth($req);
 		return $this->jsonData->sendJson($response);
 	}
-	public function logout(){
-		$response = $this->userDetails->logout();
+	public function logout($username){
+		$response = $this->userDetails->logout($username);
 		return $this->jsonData->sendJson($response);
 	}
 

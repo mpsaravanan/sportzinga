@@ -21,5 +21,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::middleware('api')->get('/user', array('uses' => 'UserController@userDetails'));
 Route::middleware('api')->post('/user/login', array('uses' => 'UserController@login'));
 Route::middleware('api')->post('/user/auth' , array('uses' => 'UserController@auth'));
-Route::middleware('api')->get('/user/logout' , array('uses' => 'UserController@logout'));
+Route::middleware('api')->get('/user/logout/{username}' , array('uses' => 'UserController@logout'));
 //Route::get('api/h/{id}', array('uses' => 'UserController@UserDetails'));
