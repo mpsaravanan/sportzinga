@@ -39,5 +39,10 @@ class UserController extends Controller {
 		$response = $this->userDetails->logout($username);
 		return $this->jsonData->sendJson($response);
 	}
+	public function signup(){
+		$req= Request::all();
+		$response = $this->userDetails->signup($req);
+		return $this->jsonData->sendJson($response);
+	}
 
 }

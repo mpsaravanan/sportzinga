@@ -80,4 +80,40 @@ class User
 		}
 		return $response;
 	}
+	public function signup($request){
+		$username = $request['user_id'];
+		$password = $request['password'];
+		$dob = $request['dob'];
+		$name = $request['name'];
+		$email = $request['email'];
+		$phone = $request['phone'];
+		$gender = $this->mapGender($request['gender']);
+		$insertUser = DB::table('sz_user')->insert([
+			['user_id' => $username , 'password' => $password, 'dob' => $dob, 'name' => $name, 'gender' => $gender]
+			]);
+		$insertUserEmail = DB::table('sz_user_emails_phones')->insert([
+			['user_id'=>$username, 'type'=>0 ,'value' => $phone, 'is_primary'=>1, 'is_verified' =>1],
+			['user_id'=>$username, 'type'=>1, 'value' => $email, 'is_primary'=>1 , 'is_verified' =>1]
+			]);
+			if($insertUser && $insertUserEmail){
+				$response = array(
+					"status" => "200",
+					"message" => "SUCCESS"
+				);
+			}
+			else{
+				$response = array(
+					"status" => "500",
+					"message" => "FAILURE"
+				);
+			}
+			return $response;
+	}
+	public function mapGender($gen){
+		if($gen == 'male'||$gen == 'm'){
+			return 1;
+		}
+		else
+			return 0;
+	}
 }
