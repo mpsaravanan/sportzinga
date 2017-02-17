@@ -309,9 +309,9 @@ section {padding: 30px 0px;}
   border-bottom: solid 3px #ffffff;
 }
 .panel-login>.panel-heading a.active{
-  color: #029f5b;
+  color: #00D7FF;
   font-size: 15px;
-  border-bottom: solid 3px #029f5b;
+  border-bottom: solid 3px #00D7FF;
 }
 .panel-login>.panel-heading hr{
   margin-top: 10px;
@@ -341,7 +341,7 @@ section {padding: 30px 0px;}
   border-color: #ccc;
 }
 .btn-login {
-  background-color: #59B2E0;
+  background-color: #00b9f5;
   outline: none;
   color: #fff;
   font-size: 14px;
@@ -349,13 +349,13 @@ section {padding: 30px 0px;}
   font-weight: normal;
   padding: 14px 0;
   text-transform: uppercase;
-  border-color: #59B2E6;
+  border-color: #00b9f5;
 }
 .btn-login:hover,
 .btn-login:focus {
   color: #fff;
-  background-color: #53A3CD;
-  border-color: #53A3CD;
+  background-color: #00B9EE;
+  border-color: #00B9EE;
 }
 .forgot-password {
   text-decoration: underline;
@@ -368,7 +368,7 @@ section {padding: 30px 0px;}
 }
 
 .btn-register {
-  background-color: #1CB94E;
+  background-color: #00b9f5;
   outline: none;
   color: #fff;
   font-size: 14px;
@@ -376,18 +376,18 @@ section {padding: 30px 0px;}
   font-weight: normal;
   padding: 14px 0;
   text-transform: uppercase;
-  border-color: #1CB94A;
+  border-color: #00b9f5;
 }
 .btn-register:hover,
 .btn-register:focus {
   color: #fff;
-  background-color: #1CA347;
-  border-color: #1CA347;
+  background-color: #00B9EE;
+  border-color: #00B9EE;
 }
 .popupnw .modal-body {padding: 0px;}
-.leftcontenbg {background: #59B2E0; min-height: 490px; padding: 15px;}
+.leftcontenbg {background: #00b9f5; min-height: 490px; padding: 15px;}
 .popupnw .modal-content {border-radius: 0px; box-shadow: none; border: none;}
-.popupnw button.close {padding: 6px 10px; font-size: 30px; cursor: pointer; position: absolute; right: 0px; top: 0px; z-index: 999;}
+.popupnw button.close {padding: 6px 10px; font-size: 30px; cursor: pointer; position: absolute; right: 0px; top: 0px; z-index: 999;color: #00b9f5;}
 .leftcontenbg span {text-align: center; display: block; padding-bottom: 30px;}
 .leftcontenbg ul {padding-left: 30px;}
 .leftcontenbg ul li {color: #ffffff; padding: 6px 0px; list-style-type: disc;}

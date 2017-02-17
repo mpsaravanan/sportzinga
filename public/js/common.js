@@ -33,6 +33,12 @@ $(function() {
 
 var loginService = function () {
     var loginService = {};
+    loginService.userName = 'jay';
+     var $createAlertPopup = $('#contactModal_container .newmodal');
+    var htmlData = _.template($('#scriptPostadError').html());
+    $createAlertPopup.html(htmlData({
+            'loginService': loginService
+        }));
     loginService.setData = function (field,value) {
     	if(value){
 
@@ -58,8 +64,8 @@ var loginService = function () {
 	    }
     }
 
-    loginService.registration = function () {
-    	var token = $("input[name=_token]").val();
+    loginService.registration = function (event) {
+    	event.preventDefault();
     	var payload = {
     		'userName':loginService.userName,
     		'email':loginService.email,
@@ -69,8 +75,8 @@ var loginService = function () {
     	$.ajax({
             url: "/homes/singup",
             method : "POST",
-            //data:payload,
-            data: { _token:token,data:payload},
+            data:payload,
+            //data: { _token:token,data:payload},
             success: function(data) {
 
             }

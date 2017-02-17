@@ -25,9 +25,16 @@
   </div>
 </header>
 
-<div class="modal fade bs-example-modal-lg popupnw" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-  <div class="modal-dialog modal-lg" role="document">
+<div class="modal fade bs-example-modal-lg popupnw" id="loginmodule" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-md" role="document">
+  <div id="contactModal_container" class="modal-content">
+            <div class="newmodal"></div>
+        </div>
     <div class="modal-content contactform"> 
+    </div>
+    </div>
+    </div>
+    <script type="text/x-underscore-template" id="scriptPostadError">
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">×</span>
       </button> 
@@ -37,12 +44,11 @@
             <div class="leftcontenbg">
               <span><img src="images/logo.png" width="150"></span>
               <ul>
-                <li>sonu kumar Register onu kumar Register  </li>
-                <li>sonu kumar</li>
-                <li>sonu kumar</li>
-                <li>sonu kumar</li>
-                <li>sonu kumar</li>
-                <li>sonu kumar</li>
+                <li>Select a Sport  </li>
+                <li>Shortlist a coach whom you need to connect by location , timings and Fees</li>
+                <li>Choose infrastructure and sports kits  from the preference filters , if needed</li>
+                <li>Get connected with coach for trial session/training session by booking</li>
+                <li>Get started with training to help the dreams of your kid</li>
               </ul>
             </div>
           </div>
@@ -65,7 +71,7 @@
                         tabindex="1" 
                         class="form-control" 
                         onkeyup="loginService.setData('userName',this.value)"
-                        value=""
+                        value="<%= loginService.userName %>"
                         placeholder="Username" 
                         >
                       </div>
@@ -94,7 +100,6 @@
                       </div>
                     </form>
                     <form id="register-form" style="display: none;">
-                    <input type="text" class="btn btn-primary" name="_token" value="{{ csrf_token() }}"  value="SAVE" />
                       <div class="form-group">
                         <input 
                         type="text" 
@@ -156,8 +161,8 @@
                       <div class="form-group">
                         <div class="row">
                           <div class="col-sm-6 col-sm-offset-3">
-                          <button onclick="loginService.registration();">Register Now</button>
-                            <!-- <input type="submit" name="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now" "> -->
+                          <!-- <button onclick="loginService.registration();">Register Now</button> -->
+                            <input type="submit" id="submit" name="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now" onclick="loginService.registration(event)">
                           </div>
                         </div>
                       </div>
@@ -169,6 +174,4 @@
           </div>
         </div>
       </div> 
-    </div>
-  </div>
-</div>
+</script >

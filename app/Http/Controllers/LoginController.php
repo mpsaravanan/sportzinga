@@ -4,7 +4,6 @@ use App\JsonResponse;
 use App\Models\Api;
 use Request, Auth,Input;
 class LoginController extends Controller {
-	private $userDetails;
 	/**
 	 * Create a new controller instance.
 	 *
@@ -12,7 +11,6 @@ class LoginController extends Controller {
 	 */
 	public function __construct()
 	{
-		$this->middleware('guest');
 		$this->apiModel = new Api();		
 	}
 
