@@ -23,15 +23,16 @@ class UserController extends Controller {
 		return 	$this->jsonData->sendJson($response);
 	}
 
-	public function login(Request $request) {
-
-		$response = $this->userDetails->login($request);
+	public function login() {
+		$req = Request::all();
+		$response = $this->userDetails->login($req);
 		return $this->jsonData->sendJson($response);
 		//$response = $this->userDetails->getLogin();
 		//return 	$this->jsonData->sendJson($response);
 	}
-	public function auth(Request $request){
-		$response = $this->userDetails->verifyAuth($request);
+	public function auth(){
+		$req= Request::all();
+		$response = $this->userDetails->verifyAuth($req);
 		return $this->jsonData->sendJson($response);
 	}
 	public function logout(){
