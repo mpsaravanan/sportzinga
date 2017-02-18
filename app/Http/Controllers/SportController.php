@@ -20,4 +20,8 @@ class SportController extends Controller{
      $response = $this->sportDetails->getList();
  		 return 	$this->jsonData->sendJson($response);
    }
+   public function getSportById($id){
+     $response = $this->sportDetails->getSportById($id);
+     return $this->jsonData->sendJson($response);
+   }
 }

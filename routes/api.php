@@ -24,4 +24,5 @@ Route::middleware('api')->post('/user/auth' , array('uses' => 'UserController@au
 Route::middleware('api')->get('/user/logout/{username}' , array('uses' => 'UserController@logout'));
 Route::middleware('api')->post('/user/signup' , array('uses' => 'UserController@signup' ));
 Route::middleware('api')->get('/sport/getList', array('uses' => 'SportController@getList'));
+Route::middleware('api')->get('/sport/getSportById/{id}', array('uses' => 'SportController@getSportById'));
 //Route::get('api/h/{id}', array('uses' => 'UserController@UserDetails'));
