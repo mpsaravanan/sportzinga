@@ -33,6 +33,13 @@ class BaseModel extends Model
 		if("POST" == strtoupper($type)){
 			curl_setopt($ch, CURLOPT_POSTFIELDS, $input);
 		}
+		$headerPost = array(
+			'Accept: application/json',
+			'Content-Type: application/json'
+		);
+		var_dump(curl_setopt($ch, CURLOPT_HTTPHEADER, $headerPost));exit;
+		curl_setopt($ch, CURLOPT_HTTPHEADER, $headerPost);
+
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		$response = curl_exec($ch);
 		var_dump($response); exit();
