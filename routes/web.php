@@ -14,5 +14,5 @@
 // Route::get('/', function () {
 //     return view('home');
 // });
-Route::get('homes', array('as' => 'login', 'uses' => 'LoginController@index'));
+Route::get('homes', array('as' => 'login', 'uses' => 'web\LoginController@index'));
 Route::post('homes/singup', array('as' => 'login', 'uses' => 'LoginController@singup'));
