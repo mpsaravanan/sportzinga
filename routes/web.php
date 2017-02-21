@@ -14,5 +14,8 @@
 // Route::get('/', function () {
 //     return view('home');
 // });
-Route::get('homes', array('as' => 'login', 'uses' => 'web\LoginController@index'));
-Route::post('homes/singup', array('as' => 'login', 'uses' => 'LoginController@singup'));
+Route::get('/', array('as' => 'login', 'uses' => 'web\LoginController@index'));
+Route::post('/singup', array('as' => 'registration', 'uses' => 'LoginController@singup'));
+Route::post('/login', array('as' => 'login', 'uses' => 'web\LoginController@login'));
+Route::get('/logout', array('as' => 'logout', 'uses' => 'web\LoginController@logOut'));
+Route::get('/auth', array('as' => 'auth', 'uses' => 'web\LoginController@auth'));

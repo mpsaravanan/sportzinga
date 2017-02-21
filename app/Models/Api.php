@@ -12,7 +12,7 @@ use App\Models\BaseModel;
 
 class Api extends BaseModel
 {
-	private $apiEndpoint = "http://127.0.0.1:9003/api/";
+	private $apiEndpoint = "http://127.0.0.1:9004/api/";
 	/*formats the values received from the post ad form
 	 *
 	 * @param $attr array : attribute received from from
@@ -21,6 +21,18 @@ class Api extends BaseModel
 	 */
 	public function UserSinup($data){
 		//return $this->curlApiCall($apiEndpoint. "user/logout/"), 'POST',$data,'ON', true);
+	}
+
+	public function login($data){
+		return $this->curlApiCall(($this->apiEndpoint. "user/login/"), 'POST',$data,'ON', true);
+	}
+
+	public function logOut($data){
+		return $this->curlApiCall(($this->apiEndpoint. "user/logout/".$data), 'GET','ON', true);
+	}
+
+	public function session($data){
+		return $this->curlApiCall(($this->apiEndpoint. "user/auth"), 'POST',$data,'ON', true);
 	}
 	public function check(){
 		$request = array(

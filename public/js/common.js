@@ -13,7 +13,6 @@ $('.servicess a[href*="#"]:not([href="#"])').click(function() {
 });
 
 $(function() {
-
     $('#login-form-link').click(function(e) {
 		$("#login-form").delay(100).show();
  		$("#register-form").hide();
@@ -30,10 +29,28 @@ $(function() {
 	});
 
 });
+function auth() {
+	$.ajax({
+        url: "/auth",
+        method : "GET",
+        //data: { _token:token,data:payload},
+        success: function(data) {
+        	if(data && data.message == "AUTH_SUCCESS"){
+        		$('.userName').removeClass('Hidden');
+        		$("#loginData").text(loginService.enquiry_name);
+        		$('.loginHide').addClass('Hidden');
+        	}
+        
+
+        }
+    });
+}auth();
 
 var loginService = function () {
     var loginService = {};
-    loginService.userName = 'jay';
+    loginService.enquiry_name = cookieService.getCookie("autofill_contactname") || '';
+    loginService.enquiry_email = cookieService.getCookie("autofill_email") || '';
+    loginService.enquiry_phone = cookieService.getCookie("autofill_no") || '';
      var $createAlertPopup = $('#contactModal_container .newmodal');
     var htmlData = _.template($('#scriptPostadError').html());
     $createAlertPopup.html(htmlData({
@@ -67,13 +84,15 @@ var loginService = function () {
     loginService.registration = function (event) {
     	event.preventDefault();
     	var payload = {
-    		'userName':loginService.userName,
+    		'username':loginService.userName,
     		'email':loginService.email,
-    		'mobile':loginService.mobile,
-    		'password':loginService.password
+    		'phone':loginService.mobile,
+    		'password':loginService.password,
+    		'gender':'m',
+    		'dob':'1992-10-19'
     	};
     	$.ajax({
-            url: "/homes/singup",
+            url: "/singup",
             method : "POST",
             data:payload,
             //data: { _token:token,data:payload},
@@ -82,14 +101,55 @@ var loginService = function () {
             }
         });
     }
-
-    loginService.selectMobileNumber = function (mobile) {
+    loginService.signIn = function (event) {
+    	event.preventDefault();
     	var payload = {
-    		'email':''
+    		'username':loginService.userName,
+    		'password':loginService.password
     	};
+    	$.ajax({
+            url: "/login",
+            method : "POST",
+            data:payload,
+            success: function(data) {
+            	if(data.auth_token){
+	            	cookieService.setCookie("autofill_contactname", data.name);
+					cookieService.setCookie("autofill_no", data.phone);
+					cookieService.setCookie("autofill_email", data.email);
+	            	$('.loginHide').addClass('Hidden');
+	            	$('.userName').removeClass('Hidden');
+	            	$("#loginData").text(data.name);
+	            	$('#loginmodule').modal('toggle');
+            	}
+				
+
+            }
+        });
     }
+    loginService.logOut = function (event) {
+    	event.preventDefault();
+    	var payload = {
+    		'username':loginService.userName,
+    		'password':loginService.password
+    	};
+    	$.ajax({
+            url: "/logout",
+            method : "GET",
+            success: function(data) {
+            	if(data.message == "SUCCESS"){
+            		$('.loginHide').removeClass('Hidden');
+            		$('.userName').addClass('Hidden');
+            	}
+            	
+            }
+        });
+    }
+
+    
      return loginService;
 }();
+
+
 
 
 

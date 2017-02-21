@@ -16,8 +16,27 @@
           <li><a href="#">Want To Be A Coach</a></li>
           <li><a href="#">Blog</a></li>
           <li><a href="#">Contact Us</a></li>
-          <li><a href="#" data-toggle="modal" data-target=".bs-example-modal-lg">Login</a></li>
-          <li><a href="#" data-toggle="modal" data-target=".bs-example-modal-lg">Register</a></li>
+          <li class="userName Hidden">
+            <div class="btn-group show-on-hover">
+              <a href="#" type="button" class="dropdown-toggle" data-toggle="dropdown">
+                <span id="loginData"></span>
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#">Profile</a></li>
+                <li><a href="#" onclick="loginService.logOut(event)">Logout</a></li>
+              </ul>
+            </div>
+          </li>
+          
+          <li class="loginHide">
+         
+            <a href="#" data-toggle="modal" data-target=".bs-example-modal-lg">Login </a>
+           
+          </li>
+          <li class="loginHide">
+          <a href="#" data-toggle="modal" data-target=".bs-example-modal-lg">Register</a>
+          </li>
           <div class="clearfix"></div>
         </ul>
       </div>
@@ -76,7 +95,14 @@
                         >
                       </div>
                       <div class="form-group">
-                        <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+                        <input 
+                        type="password" 
+                        name="password" 
+                        id="password" 
+                        tabindex="2"
+                        onkeyup="loginService.setData('password',this.value)" 
+                        class="form-control" 
+                        placeholder="Password">
                       </div>
                       <div class="form-group text-center">
                         <input type="checkbox" tabindex="3" class="" name="remember" id="remember">
@@ -85,7 +111,7 @@
                       <div class="form-group">
                         <div class="row">
                           <div class="col-sm-6 col-sm-offset-3">
-                            <input type="submit" name="login-submit" id="" tabindex="4" class="form-control btn btn-login" value="Log In">
+                            <input type="submit" name="login-submit" id="" tabindex="4" class="form-control btn btn-login" value="Log In" onclick="loginService.signIn(event)">
                           </div>
                         </div>
                       </div>
@@ -100,7 +126,7 @@
                       </div>
                     </form>
                     <form id="register-form" style="display: none;">
-                      <div class="form-group">
+                      <div class="form-group" >
                         <input 
                         type="text" 
                         name="username" 
@@ -112,7 +138,7 @@
                         value=""
                         autocomplete="off">
                       </div>
-                      <div class="form-group">
+                      <div class="emailWrapper form-group">
                         <input 
                         type="email" 
                         name="email" 
@@ -122,8 +148,13 @@
                         class="form-control" 
                         placeholder="Email Address" 
                         value=""
-                        autocomplete="off">
+                        autocomplete="off"
+                        required>
                       </div>
+                       <div class="error-container hide">
+                <small class="email_required"> Your email is required.</small>
+                <small class="email_pattern"> That is not a valid email. Please input a valid one.</small>
+            </div>
                       <div class="form-group">
                         <input 
                         type="text" 

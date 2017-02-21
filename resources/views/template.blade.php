@@ -28,7 +28,9 @@
 <!-- Include all compiled plugins (below), or include individual files as needed --> 
 <script src="js/bootstrap.min.js"></script>
 <script src="js/bootstrap-datepicker.js"></script>
+<script src="js/cookieService.js"></script>
 <script src="js/common.js"></script>
+
 
 
 <!-- @section('scripts')
