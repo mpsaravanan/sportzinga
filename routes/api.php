@@ -25,4 +25,5 @@ Route::middleware('api')->get('/user/logout/{username}' , array('uses' => 'UserC
 Route::middleware('api')->post('/user/signup' , array('uses' => 'UserController@signup' ));
 Route::middleware('api')->get('/sport/getList', array('uses' => 'SportController@getList'));
 Route::middleware('api')->get('/sport/getSportById/{id}', array('uses' => 'SportController@getSportById'));
+Route::middleware('api')->get('/localityAS', array('uses' => 'LocalityController@localityAutoSuggest'));
 //Route::get('api/h/{id}', array('uses' => 'UserController@UserDetails'));
