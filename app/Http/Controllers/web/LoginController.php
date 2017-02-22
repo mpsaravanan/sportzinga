@@ -18,8 +18,10 @@ class LoginController extends Controller {
 
 	public function singup() {
 		$userDetails = Request::all();
-		$response= $this->apiModel->similarSearch(json_encode($payloadForFooter));
-		var_dump($userDetails);exit;
+		$response= $this->apiModel->UserSinup(json_encode($userDetails));
+		$response = json_decode($response['response']);
+		return Response::json($response);
+		var_dump($response);exit;
 		
 	}
 
@@ -50,7 +52,7 @@ class LoginController extends Controller {
 				setcookie("__uid", "", time() - 10);
 				setcookie("__at", "", time() - 10);
 				setcookie("__usr", "", time() - 10);
-				return array('status'=>$response->status,'mesage'=>$response->message);
+				return array('status'=>$response->status,'message'=>$response->message);
 			}
 		}
 	}

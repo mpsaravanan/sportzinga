@@ -20,7 +20,7 @@ class Api extends BaseModel
 	 * @return string
 	 */
 	public function UserSinup($data){
-		//return $this->curlApiCall($apiEndpoint. "user/logout/"), 'POST',$data,'ON', true);
+		return $this->curlApiCall(($this->apiEndpoint. "user/signup/"), 'POST',$data,'ON', true);
 	}
 
 	public function login($data){
@@ -33,14 +33,6 @@ class Api extends BaseModel
 
 	public function session($data){
 		return $this->curlApiCall(($this->apiEndpoint. "user/auth"), 'POST',$data,'ON', true);
-	}
-	public function check(){
-		$request = array(
-			"username" => "jay",
-			"password" => "1234"
-			);
-		$data = json_encode($request);
-		return $this->curlApiCall(($this->apiEndpoint. "user/login"), 'POST',$data,'ON');
 	}
 
 }

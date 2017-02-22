@@ -60,6 +60,12 @@ var loginService = function () {
     	if(value){
 
 	    	switch (field) {
+	    		case 'gender':
+	                loginService.gender = value;
+	                break;
+	            case 'name':
+	                loginService.name = value;
+	             	break;
 	            case 'userName':
 	                loginService.userName = value;
 	                break;
@@ -70,11 +76,9 @@ var loginService = function () {
 	                loginService.mobile = value;
 	             	break;
 	            case 'password':
-	                loginService.password = value;
+	                loginService.password = btoa(value);
 	             	break;
-	            case 'confirmPwd':
-	                loginService.password = value;
-	             	break;
+	            
 
 	            default:
 	        }
@@ -84,11 +88,12 @@ var loginService = function () {
     loginService.registration = function (event) {
     	event.preventDefault();
     	var payload = {
-    		'username':loginService.userName,
+    		'name':loginService.name,
+    		'user_id':loginService.userName,
     		'email':loginService.email,
     		'phone':loginService.mobile,
     		'password':loginService.password,
-    		'gender':'m',
+    		'gender':loginService.gender,
     		'dob':'1992-10-19'
     	};
     	$.ajax({
@@ -97,6 +102,9 @@ var loginService = function () {
             data:payload,
             //data: { _token:token,data:payload},
             success: function(data) {
+            	if(data.message == 'SUCCESS'){
+            		$('#loginmodule').modal('toggle');
+            	}
 
             }
         });

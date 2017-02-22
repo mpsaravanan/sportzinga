@@ -126,6 +126,8 @@
                       </div>
                     </form>
                     <form id="register-form" style="display: none;">
+                    <input type="radio" name="gender" value="male" onclick="loginService.setData('gender','m')"> Male
+                    <input type="radio" name="gender" value="female" onclick="loginService.setData('gender','f')"> Female<br>
                       <div class="form-group" >
                         <input 
                         type="text" 
@@ -136,6 +138,17 @@
                         class="form-control" 
                         placeholder="Username" 
                         value=""
+                        autocomplete="off">
+                      </div>
+                      <div class="form-group">
+                        <input 
+                        type="text" 
+                        name="name" 
+                        id="name" 
+                        tabindex="2" 
+                        onkeyup="loginService.setData('name',this.value)"
+                        class="form-control" 
+                        placeholder="Name"
                         autocomplete="off">
                       </div>
                       <div class="emailWrapper form-group">
@@ -178,17 +191,7 @@
                         placeholder="Password"
                         autocomplete="off">
                       </div>
-                      <div class="form-group">
-                        <input 
-                        type="password" 
-                        name="confirm-password" 
-                        id="confirm-password" 
-                        tabindex="2" 
-                        onkeyup="loginService.setData('confirmPwd',this.value)"
-                        class="form-control" 
-                        placeholder="Confirm Password"
-                        autocomplete="off">
-                      </div>
+                      
                       <div class="form-group">
                         <div class="row">
                           <div class="col-sm-6 col-sm-offset-3">
